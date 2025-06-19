@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Popular Tours of India</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      color: #333;
+    }
+    h2, h3 {
+      color: #B22222;
+    }
+    h1 {
+      font-size:40px !important;
+      color: #B22222;
+      text-align: center;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+    p {
+      margin: 10px 0;
+      margin-bottom: 15px;
+    }
+
+  </style>
+</head>
+<body class=" text-gray-600 font-sans transition-colors duration-300">
+
+<!-- Container -->
+<div class="max-w-6xl mx-auto px-6 py-10">
+  <!-- Slider View -->
+  <div id="slider-view" class="hidden">
+    <h2 class="text-4xl font-semibold mb-8">
+      Most <span class="text-pink-600 italic font-bold">Popular Tour</span> of India
+    </h2>
+
+    <div class="swiper mySwiper pb-10">
+      <div class="swiper-wrapper">
+        <!-- Each Slide -->
+        <div class="swiper-slide">
+          <a href="?tour=golden" class="block">
+            <div class="relative rounded-xl overflow-hidden shadow-md h-[350px]">
+              <img src="destinationsImg/Agra-imghh.png" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent text-white p-4">
+                <p class="font-semibold">Golden Triangle Tour</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="?tour=ladakh" class="block">
+            <div class="relative rounded-xl overflow-hidden shadow-md h-[350px]">
+              <img src="destinationsImg/Leh-imghh.png" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent text-white p-4">
+                <p class="font-semibold">Ladakh – A Piece of Moon</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="?tour=kerala" class="block">
+            <div class="relative rounded-xl overflow-hidden shadow-md h-[350px]">
+              <img src="destinationsImg/kerala-tourism.png" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent text-white p-4">
+                <p class="font-semibold">Splendour of Kerala</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="?tour=india" class="block">
+            <div class="relative rounded-xl overflow-hidden shadow-md h-[350px]">
+              <img src="destinationsImg/india.png" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent text-white p-4">
+                <p class="font-semibold">Complete India Tour</p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="swiper-slide">
+          <a href="?tour=karnataka" class="block">
+            <div class="relative rounded-xl overflow-hidden shadow-md h-[350px]">
+              <img src="destinationsImg/karnataka.png" class="w-full h-full object-cover" />
+              <div class="absolute bottom-0 w-full bg-gradient-to-t from-black to-transparent text-white p-4">
+                <p class="font-semibold">Karnataka</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </div>
+
+  <!-- Detail View -->
+  <div id="detail-view" class="hidden">
+    <div id="tour-details" class="space-y-6">
+      <!-- Content will be loaded here -->
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1280: { slidesPerView: 4 }
+    }
+  });
+
+  const tours = {
+    golden: {
+      title: "",
+      image: "destinationsImg/Agra-imghh.png",
+      description: `
+    <h1>GOLDEN TRIANGLE TOUR OF INDIA</h1>
+    <p><strong>Destination:</strong> Delhi – Jaipur – Agra</p>
+    <p><strong>Best Time To Travel:</strong> September – April</p>
+    <p><strong>Duration:</strong> 06 Days / 05 Nights</p>
+
+    <h2>Trip Highlights</h2>
+    <p>
+      The purity, the shine, the glory and the royal power that has been long associated with gold reflects in the Golden Triangle tour of India. The Golden Triangle tour is a potpourri of the three historic cities of India. The harmonious blend of the capital of the country with its historic splendor, the soft romanticism that is seen at amazing Taj Mahal in Agra and the fierce magnificence of the Rajasthan desert presents India at its enchanting best.
+    </p>
+    <h3>Highlights:</h3>
+    <ul>
+      <li><strong>Delhi:</strong> Old City, Chandni Chowk, Jama Masjid, Rajghat, India Gate, Parliament Building, President House, Qutub Minar, Humayun’s Tomb.</li>
+      <li><strong>Agra:</strong> Taj Mahal, Agra Fort, Fatehpur Sikri</li>
+      <li><strong>Jaipur:</strong> Hawa Mahal, City Palace, Jantar Mantar, Amber Fort</li>
+    </ul>
+
+    <h2>Day Wise Plan</h2>
+
+    <h3>Day 01: Arrive Delhi</h3>
+    <p>Our representative will receive you at the International airport and escort you to your hotel.</p>
+    <p><strong>Overnight in:</strong> Delhi</p>
+    <p><strong>Meals:</strong> None</p>
+
+    <h3>Day 02: Delhi</h3>
+    <p>Post breakfast enjoy full day city tour of Old Delhi and New Delhi.</p>
+    <p>Your private guided tour of Old Delhi will take you to Chandni Chowk, Jama Masjid, and the narrow alleys of Old Delhi. Enjoy a Rickshaw Ride in Old Delhi. Drive past the Red Fort and Raj Ghat.</p>
+    <p>In the afternoon, visit New Delhi including President House, India Gate, Parliament Building, and Humayun's Tomb.</p>
+    <p><strong>Overnight in:</strong> Delhi</p>
+    <p><strong>Meals:</strong> Breakfast</p>
+
+    <h3>Day 03: Delhi – Jaipur</h3>
+    <p>Morning drive to Jaipur, capital of Rajasthan. Upon arrival, check in at the hotel. Afternoon free at leisure.</p>
+    <p><strong>Overnight in:</strong> Jaipur</p>
+    <p><strong>Meals:</strong> Breakfast</p>
+
+    <h3>Day 04: Jaipur</h3>
+    <p>After breakfast, visit Amber Fort. Later visit City Palace, Jantar Mantar, and take a photo stop at Hawa Mahal.</p>
+    <p><strong>Overnight in:</strong> Jaipur</p>
+    <p><strong>Meals:</strong> Breakfast</p>
+
+    <h3>Day 05: Jaipur – Agra via Fatehpur Sikri</h3>
+    <p>After breakfast, drive to Agra. En route, visit Fatehpur Sikri. Upon arrival, check into your hotel. Rest of the day at leisure.</p>
+    <p><strong>Overnight in:</strong> Agra</p>
+    <p><strong>Meals:</strong> Breakfast</p>
+
+    <h3>Day 06: Agra – Delhi Departure</h3>
+    <p>After breakfast, visit the Taj Mahal (closed on Friday) and Agra Fort. Later, drive back to Delhi and transfer to the International Airport for your flight.</p>
+    <p><strong>Meals:</strong> Breakfast</p>
+
+    <p><strong>**** End of Tour ****</strong></p>`
+    },
+    ladakh: {
+      title: "Ladakh – A Piece of Moon",
+      image: "destinationsImg/Leh-imghh.png",
+      description: `
+      <h1>Ladakh Tour Package</h1>
+
+  <p><strong>Destination:</strong> Delhi – Leh – Khardung La – Nubra Valley – Panamic – Leh</p>
+  <p><strong>Best Time to Travel:</strong> June to August (July and August are Monsoon Season)</p>
+  <p><strong>Duration:</strong> 08 Days / 07 Nights</p>
+
+  <h2>Trip Highlights</h2>
+  <p>This tour covers monasteries and villages across Indus Valley, Sham Valley, and Nubra Valley — once a part of the Silk Route. You'll get the chance to interact with locals and experience Ladakhi village life.</p>
+  <p>Ladakh’s landscapes are extremely photogenic. Don’t forget your camera, extra films, and batteries!</p>
+
+  <ul>
+    <li><strong>Leh:</strong> Hemis, Thiksey, Shey</li>
+    <li><strong>Nubra Valley:</strong> Highest Motorable Road in the World</li>
+    <li><strong>Panamic-Leh:</strong> Ladakhi Village</li>
+    <li><strong>Alchi:</strong> Monastery of Lamayuru</li>
+  </ul>
+
+  <h2>Day Wise Itinerary</h2>
+
+  <p><strong>Day 01: Arrive Delhi</strong><br>
+  Our representative will receive you at the international airport and escort you to your hotel.<br>
+  <strong>Overnight:</strong> Delhi<br>
+  <strong>Meals:</strong> None</p>
+
+  <p><strong>Day 02: Delhi – Leh</strong><br>
+  Morning flight to Leh. Rest day for acclimatization.<br>
+  <strong>Overnight:</strong> Leh<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 03: Leh – Indus Valley – Leh</strong><br>
+  Visit Shey, Thiksey, and Hemis monasteries. Evening free.<br>
+  <strong>Overnight:</strong> Leh<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 04: Leh – Khardung La – Nubra Valley</strong><br>
+  Drive to Khardung La, then continue to Nubra Valley.<br>
+  <strong>Overnight:</strong> Nubra<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 05: Nubra Valley – Panamic – Leh</strong><br>
+  Visit Panamic village. Return to Leh in the afternoon.<br>
+  <strong>Overnight:</strong> Leh<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 06: Leh – Lamayuru – Alchi</strong><br>
+  Visit Lamayuru Monastery and Alchi village.<br>
+  <strong>Overnight:</strong> Alchi<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 07: Alchi – Leh</strong><br>
+  Visit Alchi Monastery. Return to Leh. Evening traditional dance performance.<br>
+  <strong>Overnight:</strong> Leh<br>
+  <strong>Meals:</strong> Breakfast, Dinner</p>
+
+  <p><strong>Day 08: Leh – Delhi (By Flight)</strong><br>
+  Transfer to airport for flight to Delhi. Tour ends.<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p style="text-align:center; font-weight:bold;">**** End of Tour ****</p>`
+    },
+    kerala: {
+      title: "",
+      image: "destinationsImg/kerala-tourism.png",
+      description: `
+      <h1>Kerala Tour Package</h1>
+
+  <p><strong>Destination:</strong> Cochin – Munnar – Periyar – Allepey – Kovalam</p>
+  <p><strong>Best Time to Visit:</strong> September – March</p>
+  <p><strong>Duration:</strong> 10 Days / 09 Nights</p>
+
+  <h2>Kerala Overview</h2>
+  <p>Sprawling mansions set in lovely locales—exotic islands, luxuriant game reserves on hillsides, beaches, and backwaters. That is what Kerala is all about.</p>
+
+  <h2>Kerala Tour Highlights</h2>
+  <ul>
+    <li><strong>Cochin:</strong> Jewish Synagogue, Kathakali Dance</li>
+    <li><strong>Munnar:</strong> Tea Garden Estate</li>
+    <li><strong>Periyar:</strong> Periyar Wildlife Sanctuary</li>
+    <li><strong>Allepey:</strong> Houseboat</li>
+    <li><strong>Kovalam:</strong> Beaches of Kerala</li>
+  </ul>
+
+  <h2>Kerala Tour Itinerary</h2>
+
+  <p><strong>Day 1: Arrive Cochin</strong><br>
+  Welcome to India! Our representative will greet you at the airport and transfer you to the hotel.<br>
+  <strong>Overnight:</strong> Cochin<br>
+  <strong>Meals:</strong> No Meal</p>
+
+  <p><strong>Day 2: Cochin</strong><br>
+  Sightseeing includes the Dutch Palace, Jewish Synagogue, St. Francis Church, Chinese fishing nets. Enjoy Kathakali performance in the evening.<br>
+  <strong>Overnight:</strong> Cochin<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 3: Cochin – Munnar</strong><br>
+  Drive to Munnar and check-in at the hotel.<br>
+  <strong>Overnight:</strong> Munnar<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 4: Munnar</strong><br>
+  Visit Kundala Lake, Tea Museum, spice plantations, Mathupetty, Anaimudi Peak, and scenic trails.<br>
+  <strong>Overnight:</strong> Munnar<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 5: Munnar – Periyar</strong><br>
+  Drive to Periyar. Check-in at the hotel. Leisure time.<br>
+  <strong>Overnight:</strong> Periyar<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 6: Periyar</strong><br>
+  Nature walk, elephant ride at Elephant Junction, and boat cruise on Periyar Lake.<br>
+  <strong>Overnight:</strong> Periyar<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 7: Periyar – Allepey</strong><br>
+  Drive to Allepey. Check into houseboat. Experience life on Kerala backwaters.<br>
+  <strong>Overnight:</strong> Houseboat<br>
+  <strong>Meals:</strong> Breakfast, Lunch, Dinner</p>
+
+  <p><strong>Day 8: Allepey – Kovalam</strong><br>
+  Drive to Kovalam and check-in at hotel. Relax at Lighthouse, Hawa, and Samudra beaches.<br>
+  <strong>Overnight:</strong> Kovalam<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 9: Kovalam</strong><br>
+  Enjoy leisure time and activities at your own pace.<br>
+  <strong>Overnight:</strong> Kovalam<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p><strong>Day 10: Kovalam – Trivandrum</strong><br>
+  Drive to Trivandrum airport for your onward flight.<br>
+  <strong>Meals:</strong> Breakfast</p>
+
+  <p style="text-align:center; font-weight:bold;">**** End of Tour ****</p>`
+    },
+    india: {
+      title: "",
+      image: "destinationsImg/india.png",
+      description: `
+      <h1>Complete India Tour Destination</h1>
+
+  <p>Delhi – Agra – Khajuraho – Varanasi – Kolkata – Mahabalipuram – Pondicherry – Thanjavur – Madurai – Periyar – Alleppey – Cochin – Goa – Mumbai</p>
+  <p>Duration: 24 Days / 23 Nights</p>
+
+  <h2>Overview of Complete India Tour</h2>
+  <p>This 24-day journey through India combines culture, history, and natural beauty across iconic destinations. Starting in Delhi, explore the vibrant contrasts of Old and New Delhi before heading to Agra to witness the Taj Mahal and Agra Fort. Continue to Khajuraho for its intricate temples, then on to the sacred city of Varanasi for a sunrise boat ride on the Ganges and the mesmerizing Ganga Aarti ceremony.</p>
+  <p>Fly to Kolkata for a glimpse into its colonial heritage, then travel south to Mahabalipuram and Pondicherry to experience Dravidian temple architecture and French colonial charm. Visit Thanjavur and Madurai for historical temples and palaces before entering Periyar‘s lush spice plantations and taking a tranquil backwater cruise in Alleppey.</p>
+  <p>Arrive in Cochin to explore its multicultural heritage and iconic Chinese fishing nets, and then move to Goa for a blend of beach relaxation and Portuguese-inspired sights. The tour concludes in Mumbai, where you’ll discover Elephanta Caves, colonial landmarks, and the bustling streets of India’s largest city. This itinerary offers an immersive journey through India’s spiritual, architectural, and natural wonders, leaving travelers with unforgettable memories.</p>
+
+  <h2>Highlights:</h2>
+  <ul>
+    <li>Delhi: Dive into the contrasts of Old and New Delhi, visiting historic sites like the Red Fort, Jama Masjid, Qutub Minar, and India Gate.</li>
+    <li>Agra: Witness the timeless beauty of the Taj Mahal at sunrise, explore the imposing Agra Fort, and visit the elegant Itmad-ud-Daula tomb.</li>
+    <li>Khajuraho: Discover the intricately carved UNESCO World Heritage Temples, famous for their sensual sculptures and remarkable architecture.</li>
+    <li>Varanasi: Experience the spiritual energy of the Ganga Aarti ceremony, a sunrise boat ride on the Ganges River, and visits to sacred temples.</li>
+    <li>Kolkata: Explore the cultural heart of Kolkata, including the Victoria Memorial, St. Paul’s Cathedral, and the lively New Market.</li>
+    <li>Mahabalipuram: Marvel at ancient rock-cut temples like the Shore Temple and the Five Rathas, showcasing unique Dravidian architecture.</li>
+    <li>Pondicherry: Enjoy the serene beaches, colonial charm of the French Quarter, and the spiritual ambiance of Auroville.</li>
+    <li>Thanjavur: Visit the grand Brihadeeswarar Temple, a UNESCO site renowned for its Chola dynasty architecture.</li>
+    <li>Madurai: Explore the legendary Meenakshi Temple, a vibrant complex with intricate sculptures and a lively atmosphere.</li>
+    <li>Periyar: Walk through lush spice plantations and spot wildlife in Periyar National Park, known for its scenic landscapes.</li>
+    <li>Alleppey: Drift through Kerala’s scenic backwaters on a traditional houseboat, surrounded by coconut palms and rustic villages.</li>
+    <li>Cochin: See the famous Chinese Fishing Nets, visit Mattancherry Palace, and explore the quaint Jewish Quarter.</li>
+    <li>Goa: Relax on stunning beaches, explore Basilica of Bom Jesus, and enjoy the unique blend of Indian and Portuguese cultures.</li>
+    <li>Mumbai: End the journey with a visit to the Elephanta Caves, the bustling Gateway of India, and a city tour of historic and modern landmarks.</li>
+  </ul>
+
+  <h2>Complete India Tour Itinerary</h2>
+
+  <p>Day 1: Arrive in Delhi</p>
+  <p>Welcome to India! Upon arrival, get a greeting and transfer to the hotel.</p>
+  
+  <p>Day 2: Explore Delhi</p>
+  <p>Exploring Old Delhi, including the Red Fort (from outside), Jama Masjid, and a rickshaw ride through Chandni Chowk. Continue to Raj Ghat and the National Gandhi Museum, then visit New Delhi’s Parliament, Rashtrapati Bhawan, and India Gate, with Humayun’s Tomb.</p>
+
+  <p>Day 3: Delhi to Agra</p>
+  <p>Drive to Agra, visit the iconic Taj Mahal and Agra Fort, followed by a heritage walk in Tajganj.</p>
+
+  <p>Day 4: Agra to Khajuraho (via Jhansi & Orchha)</p>
+  <p>Take a train to Jhansi, then drive via Orchha’s historic sites before reaching Khajuraho.</p>
+
+  <p>Day 5: Khajuraho to Varanasi</p>
+  <p>Tour the famed temples of Khajuraho before flying to Varanasi for the Ganga Aarti ceremony at Dasaswamedh Ghat.</p>
+
+  <p>Day 6: Varanasi to Kolkata</p>
+  <p>Enjoy a sunrise boat ride on the Ganges, visit an Indian wrestling school, then fly to Kolkata.</p>
+
+  <p>Day 7: Discover Kolkata</p>
+  <p>Visit Mother Teresa’s House, Howrah Bridge, St. John’s Church, and the Victoria Memorial.</p>
+
+  <p>Day 8: Kolkata to Mahabalipuram</p>
+  <p>Fly to Chennai, then transfer to Mahabalipuram.</p>
+
+  <p>Day 9: Mahabalipuram</p>
+  <p>Explore Mahabalipuram’s temples, including Arjuna’s Penance and the Shore Temple.</p>
+
+  <p>Day 10: Mahabalipuram to Pondicherry (via Kanchipuram)</p>
+  <p>Drive to Pondicherry with a stop at a silk workshop in Kanchipuram.</p>
+
+  <p>Day 11: Pondicherry</p>
+  <p>Tour Aurobindo Ashram, Auroville, and the Pondicherry Museum; enjoy a walk along Beach Road.</p>
+
+  <p>Day 12: Pondicherry to Thanjavur (via Kumbakonam)</p>
+  <p>En route to Thanjavur, visit Kumbakonam’s temples, followed by Brihadeeswara Temple and Thanjavur Palace.</p>
+
+  <p>Day 13: Thanjavur to Madurai (via Trichy)</p>
+  <p>Explore the Rock Fort in Trichy, then continue to Madurai.</p>
+
+  <p>Day 14: Madurai to Periyar</p>
+  <p>Visit Meenakshi Temple and Thirumalai Nayak Palace, then drive to Periyar and tour a spice plantation.</p>
+
+  <p>Day 15: Periyar</p>
+  <p>Enjoy a boat ride on Lake Periyar and a nature walk.</p>
+
+  <p>Day 16: Periyar to Alleppey</p>
+  <p>Drive to Alleppey and experience a houseboat cruise along Kerala’s backwaters.</p>
+
+  <p>Day 17: Alleppey to Cochin</p>
+  <p>Drive to Cochin, visit Kumbhalgani Fisherman Village, and learn Indian cooking.</p>
+
+  <p>Day 18: Explore Cochin</p>
+  <p>Tour Fort Cochin, St. Francis Church, Mattancherry Palace, and watch a Kathakali dance performance.</p>
+
+  <p>Day 19: Cochin to Goa</p>
+  <p>Cycle through Fort Cochin, then take an overnight train to Goa.</p>
+
+  <p>Day 20-21: Goa</p>
+  <p>Explore South and North Goa’s beaches, churches, and local culture; enjoy a beach day at leisure.</p>
+
+  <p>Day 22: Goa to Mumbai</p>
+  <p>Fly to Mumbai and relax at your hotel.</p>
+
+  <p>Day 23-24: Mumbai</p>
+  <p>Tour Elephanta Caves, the Prince of Wales Museum, and explore Mumbai’s highlights before your departure.</p>
+`
+    },
+    karnataka: {
+      title: "",
+      image: "destinationsImg/karnataka.png",
+      description: `
+      <h1>Karnataka Tour Packages</h1>
+  <h2>Karnataka Tour Package Destination</h2>
+  <p>Bangalore – Coorg – Kabini – Mysore – Hassan – Hospet – Badami – Goa</p>
+  <p><strong>Best Time to Visit Karnataka:</strong> October to April</p>
+  <p><strong>Duration:</strong> 13 Days / 12 Nights</p>
+
+  <h2>Karnataka Trip Highlights</h2>
+  <p>Kannadiga’s… Karnataka.. The land of Goddess Bhuvaneshwari, is also celebrated as karunadu which welcomed and blessed all people from all over the world. Karnataka is a state in South West India. It was created on 1 November 1956, with the passage of the States Reorganization Act. Originally known as the State of Mysore, it was renamed Karnataka in 1973.</p>
+
+  <h2>Karnataka Tour Place Highlights:</h2>
+  <ul>
+    <li><strong>BANGALORE:</strong> Vidhan Sabha, Nandi Temple</li>
+    <li><strong>COORG:</strong> Maidikeri Fort, Raja’s Seat, Nagarhole National Park, Iruppu Falls, Abbey Falls, Omkareshwara Temple</li>
+    <li><strong>KABINI:</strong> Kabini National Park, Boat Ride</li>
+    <li><strong>MYSORE:</strong> Brindavan Gardens</li>
+    <li><strong>HASSAN:</strong> Temples of Halebid</li>
+    <li><strong>HOSPET:</strong> Hampi or Vijayanagara, Virupaksha Temple</li>
+    <li><strong>BADAMI:</strong> Aihole, Patadakal, Bhutanatha temples, Archaeological Museum</li>
+  </ul>
+
+  <h2>Karnataka Tour Package Itinerary</h2>
+
+  <h3>Day 1: Arrive – Bangalore (Flight)</h3>
+  <p>Welcome to India – a country where hospitality is a way of life; to a culture steeped in tradition, a land where history lives in music and dance. You will be received at the airport in a traditional manner and transfer to the hotel.</p>
+  <p><strong>Overnight:</strong> Bangalore</p>
+  <p><strong>Meal:</strong> No Meal</p>
+
+  <h3>Day 2: Bangalore</h3>
+  <p>Morning after breakfast, go for a half-day city tour with a visit to the Vidhan Sabha that houses the State’s Legislature and Secretariat, the Nandi Temple that is one of the oldest temples in India and is popularly known as the Bull temple.</p>
+  <p><strong>Overnight:</strong> Bangalore</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 3: Bangalore – Coorg</h3>
+  <p>Morning after breakfast, we transfer you to Coorg. Kodagu, also known by the name Coorg, is an affluent hill station endowed with alluring natural beauty and charm. It is an ideal gateway that provides excellent opportunities to be with nature and feel its various exciting facades.</p>
+  <p><strong>Evening:</strong> Free for leisure activities.</p>
+  <p><strong>Overnight:</strong> Coorg</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 4: Coorg</h3>
+  <p>After a healthy breakfast, today we visit Maidikeri Fort, Raja’s Seat, Nagarhole National Park, Iruppu Falls, Abbey Falls, and the holy Omkareshwara Temple.</p>
+  <p><strong>Overnight:</strong> Coorg</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 5: Coorg – Kabini</h3>
+  <p>After breakfast, transfer to Kabini. Discover Kabini National Park, among the most popular wildlife destinations in South India. The area abounds with captivating creatures including bison, sambar, spotted deer, mongoose, langur, many species of birds and butterflies, and an impressive population of elephants. In the afternoon, enjoy a thrilling jungle safari.</p>
+  <p><strong>Overnight:</strong> Kabini</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 6: Kabini</h3>
+  <p>This morning, embark on a boat safari, getting to know the many species of this region from a new vantage point. Afternoon free for leisure activities.</p>
+  <p><strong>Overnight:</strong> Kabini</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 7: Kabini – Mysore</h3>
+  <p>Today, after breakfast, transfer to Mysore. Later, visit Brindavan Gardens, where you will explore the beauty of flowers and an evening musical light show.</p>
+  <p><strong>Overnight:</strong> Mysore</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 8: Mysore – Hassan</h3>
+  <p>After breakfast, we proceed for Hassan. Visit the temples of Halebid, which are silent witnesses to the rich cultural heritage of Karnataka. The 12th-century Hoysaleswara Temple is impressive for its sculptural profusion, covering gods, goddesses, animals, birds, and dancing girls.</p>
+  <p><strong>Overnight:</strong> Hassan</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 9: Hassan – Hospet</h3>
+  <p>After an early breakfast, transfer to Hospet. In the afternoon, take a tour of Hampi or Vijayanagara, one of the largest empires in the history of India, now in ruins. Explore the ruined kingdom and return to Hospet.</p>
+  <p><strong>Overnight:</strong> Hospet</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 10: Hospet – Badami</h3>
+  <p>After breakfast, transfer to Badami. Enroute, visit Aihole and Patadakal. Aihole was the first capital of the early Chalukyas and is home to over a hundred ornate temples dating back to the 5th century. Visit the Bhutanatha temples and the Archaeological Museum.</p>
+  <p><strong>Overnight:</strong> Badami</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 11: Badami – Goa</h3>
+  <p>After breakfast, drive to Goa. Upon arrival, check in at the hotel. Rest of the day free at leisure to enjoy the beach.</p>
+  <p><strong>Overnight:</strong> Goa</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 12: Goa</h3>
+  <p>After breakfast at the hotel, the rest of the day is free for leisure activities and beach enjoyment.</p>
+  <p><strong>Overnight:</strong> Goa</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h3>Day 13: Goa – Delhi (Departure) (Flight)</h3>
+  <p>Breakfast at the hotel. The rest of the day free at leisure. Later, transfer to the airport for the flight to Delhi. Upon arrival, meet and assist, then transfer to the international airport for your onward flight.</p>
+  <p><strong>Meal:</strong> Breakfast</p>
+
+  <h2>End of the Tour</h2>`
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const tourKey = params.get("tour");
+
+  if (tourKey && tours[tourKey]) {
+    document.getElementById("detail-view").classList.remove("hidden");
+    const tour = tours[tourKey];
+    document.getElementById("tour-details").innerHTML = `
+      <h1 class="text-3xl font-bold">${tour.title}</h1>
+      <img src="${tour.image}" class="w-full max-h-[400px] rounded-xl shadow-lg object-cover" />
+      <p class="text-lg text-gray-700">${tour.description}</p>
+    `;
+  } else {
+    document.getElementById("slider-view").classList.remove("hidden");
+  }
+</script>
+<script>
+  function adjustIframeHeight() {
+    var iframe = window.frameElement; // Get the iframe element
+    if (iframe) {
+      iframe.style.height = document.body.scrollHeight + "px"; // Set the iframe height based on the content height
+    }
+  }
+
+  // Adjust iframe height on load, resize, and after images are loaded
+  window.addEventListener('load', adjustIframeHeight); // Adjust when the page loads
+  window.addEventListener('resize', adjustIframeHeight); // Adjust when resizing
+  window.addEventListener('DOMContentLoaded', adjustIframeHeight); // Adjust after content is loaded
+
+  // In case of images or delayed content, set a timeout to check the height
+  window.addEventListener('load', function() {
+    setTimeout(adjustIframeHeight, 1000); // Adjust after 1 second to catch any delayed loading
+  });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+body {
+  font-family: "Alkatra", Sans-serif;
+}
+/* Section styling */
+#destinations-section {
+  position: relative;
+  padding: 100px 20px;
+  background: linear-gradient(to bottom right, #fdfdfd, #e0f7fa);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Fancy text container */
+.fancy-text-container {
+  font-size: 2.5rem;
+  margin-top: 120px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  z-index: 1;
+}
+
+/* Fancy text parts */
+.fancy-text-prefix,
+.fancy-text-suffix {
+  color: #fcfbfb;
+}
+
+.fancy-text-typing {
+  color: #e6007e;
+  display: inline-block;
+  border-right: 2px solid #e6007e;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+/* Typing animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 300px; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #e6007e; }
+}
+
+/* Destination Card Styling */
+.destination-card {
+  max-width: 300px;
+  margin: 20px auto;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: transform 0.3s;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+}
+
+.destination-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.destination-content {
+  padding: 15px;
+}
+
+.destination-content h3 {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  color: #222;
+}
+
+.destination-content p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Destination Grid */
+.destination-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  margin: 40px auto;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+/* Flex properties for destination cards */
+.destination-card {
+  flex: 1 1 300px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.destination-card:hover {
+  transform: translateY(-5px);
+}
+
+.destination-content {
+  padding: 20px;
+}
+
+.destination-content h3 {
+  font-size: 1.3rem;
+  color: #222;
+}
+
+.destination-content a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.destination-content p {
+  font-size: 0.95rem;
+  color: #555;
+}

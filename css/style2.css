@@ -1,0 +1,81 @@
+/* Base menu styling */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.menu > li {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-link {
+  padding: 10px 20px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* Shared dropdown styles */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-top: 2px solid #fc036b;
+  padding: 30px 60px;
+  flex-direction: row;
+  gap: 40px;
+  white-space: nowrap;
+}
+
+/* Specific services dropdown */
+.service-dropdown {
+  margin-top: -15px;
+  margin-left: 550px;
+  width: auto; /* shrink to content */
+  padding: 20px;
+  border-top: 2px solid #fc036b;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: saturate(180%) blur(10px);
+}
+
+/* Only show on hover */
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+/* Column design */
+.column {
+  min-width: 180px;
+}
+
+.column h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.column a {
+  display: block;
+  color: orange;
+  text-decoration: none;
+  margin: 4px 0;
+  transition: color 0.3s ease;
+}
+
+.column a:hover {
+  color: #fc036b;
+  font-weight: bold;
+}

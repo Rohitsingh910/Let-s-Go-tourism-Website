@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Festival Explorer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .hero {
+      background: url('festivalImg/holi/3.png') center center/cover no-repeat;
+      height: 400px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      color: white;
+    }
+
+    .overlay {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .hero-text {
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    .hero-text .highlight {
+      color: #e91e63;
+      font-family: 'Brush Script MT', cursive;
+      font-size: 50px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .container h1,
+    .container h2,
+    .container h3 {
+      font-weight: bold;
+    }
+
+    .container h1 {
+      font-size: 2rem;
+    }
+
+    .day {
+      margin-bottom: 30px;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .gallery-image {
+      width: 360px;
+      height: 200px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .scroll-gallery-wrapper {
+      overflow: hidden;
+      width: 1080px;
+    }
+
+    .scroll-gallery-track {
+      display: flex;
+      animation: scroll-step 10s steps(6, end) infinite;
+    }
+
+    @keyframes scroll-step {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-2160px);
+      }
+    }
+
+    .festival-card {
+      position: relative;
+      height: 350px;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .festival-card:hover {
+      transform: scale(1.05);
+    }
+
+    .festival-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .festival-card:hover img {
+      opacity: 0.7;
+    }
+
+    .festival-card .card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .festival-card .card-info h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="bg-white p-8 text-gray-800 font-sans leading-relaxed">
+ 
+  <div class="hero">
+    <div class="overlay">
+      <div class="hero-text">
+        Best <span class="highlight">Festival Tours</span> of India
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO SECTION -->
+  <section id="introSection" class="max-w-6xl mx-auto p-6 mt-10">
+    <h1 class="text-3xl font-semibold text-gray-900 mb-6">Festival Tour of India</h1>
+
+    <p class="mb-4">
+      Lets Discover Indian Festival with Our <strong class="font-semibold text-black">Festival Tour in India</strong>
+      package,
+      where every needed detail for American, Canadian, European and other international tourists, is presented for you.
+      Let yourself get immersed in the colorful weave of celebrations that are India. With the range of colors from Holi
+      to the display of Diwali lights, our website will carry you through a fascinating trip of India’s most respected
+      festivals.
+    </p>
+
+    <p class="mb-4">
+      At <strong class="font-semibold text-black">LET'S GO</strong>, we are experts in designing tours that would give
+      you
+      a real experience of India and its lifestyle. Whether you’re in search of the thrill of Holi, the devotion of
+      Diwali,
+      or the cultural Fair you’ll have a time you will never forget with the true experience and warm hospitality.
+    </p>
+
+    <p>
+      Be the part of us during the celebration of life, love, and unity on the fruits of varied Indian festivals.
+    </p>
+  </section>
+
+  <!-- Festival Cards -->
+  <div id="cardView"
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-12">
+    <!-- Cards injected by JS -->
+  </div>
+
+  <!-- Detail View -->
+  <div id="detailView" class="max-w-6xl mx-auto hidden px-4">
+    <h1 id="detailTitle" class="text-4xl font-bold mb-8 text-center mt-10"></h1>
+
+    <!-- Gallery -->
+    <div class="scroll-gallery-wrapper mb-6">
+      <div id="imageScroller" class="scroll-gallery-track"></div>
+    </div>
+
+    <p id="detailDescription" class="text-xl leading-relaxed text-gray-700 text-center"></p>
+  </div>
+
+  <script>
+    const festivals = [
+      {
+        id: "hornbill",
+        title: "Hornbill Festival",
+        image: "festivalImg/Hornbill-Festival-Package.png",
+        description: `
+    <div class="container">
+    <h1>Destination</h1>
+    <p> Delhi – Imphal – Kohima – Jorhat – Kaziranga</p>
+    <p><strong>Duration: 12 Days / 11 Nights</strong></p>
+    <br>
+    <h2>Hornbill Festival Tour Overview</h2>
+    <p>The Hornbill festival held in the first week of December shows that with its stunning natural beauty and great cultural traditions, Nagaland can offer a rich fare to tourists.</p>
+
+    <p>NAGALAND, with its diverse tribal culture, is a land of festivals. A narrow strip of mountainous territory with rugged hills, emerald valleys, sparkling streams and a rich variety of flora and fauna, the 16th State of the Indian Union has salubrious climate throughout the year. It is bounded by Assam in the west, Myanmar in the east, Arunachal Pradesh in the north and Manipur in the south.</p>
+
+    <p>Sometimes referred to as the ‘Switzerland of the East’, Nagaland represents unimaginable beauty, moulded perfectly for a breathtaking experience. For the adventurous, the State is an ideal place for trekking and jungle camping and offers limitless possibilities for exploring its lush sub-tropical rainforests, which are a treasure trove of medicinal plants. The 20-lakh-strong Naga people, by nature, are fun lovers, and life in Nagaland is one long festival.</p>
+    <br>
+    <h2>Hornbill Festival Tour Itinerary</h2>
+    <br>
+    <div class="day">
+      <h3>Day 1: Arrive Delhi</h3>
+      <p>Arrive in Delhi by flight. You will be welcomed with garlands and transferred to your hotel. Overnight in Delhi.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 2: Arrive Imphal</h3>
+      <p>Fly to Imphal. On arrival, meet our representative and transfer to your hotel. Attend the Sangai Festival in the afternoon. Overnight in Imphal.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 3: Imphal</h3>
+      <p>Visit Loktak Lake, the largest freshwater lake, and the INA Museum. Attend the Sangai Festival in the afternoon. Overnight in Imphal.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 4: Imphal – Kohima</h3>
+      <p>Visit Shree Shree Govindajee Temple and drive to Kohima, visiting the World War II Cemetery en route. Overnight in Kohima.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 5: Kohima</h3>
+      <p>Full-day enjoyment at the Hornbill Festival. Overnight in Kohima.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 6: Kohima – Khonoma Village</h3>
+      <p>Excursion to Khonoma Village (25 km). Explore the village and return to Kohima. Visit the local market in the evening. Overnight in Kohima.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 7: Kohima – Jorhat</h3>
+      <p>Drive to Jorhat. Visit Cinnamara Tea Estate and Tocklai Tea Research Centre. Explore Jorhat Gymkhana. Overnight in Jorhat.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 8: Jorhat – Majuli Island – Jorhat</h3>
+      <p>Drive to Nimati Ghat and board the ferry to Majuli Island. Return to Jorhat in the evening. Overnight in Jorhat.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 9: Jorhat – Kaziranga</h3>
+      <p>Drive to Kaziranga National Park. Check in at hotel. Overnight in Kaziranga.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 10: Kaziranga National Park</h3>
+      <p>Enjoy an early morning Elephant Safari and an afternoon Jeep Safari. Overnight in Kaziranga.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 11: Kaziranga – Guwahati – Delhi</h3>
+      <p>Drive to Guwahati airport and fly to Delhi. Transfer to your hotel. Evening at leisure. Overnight in Delhi.</p>
+    </div>
+
+    <div class="day">
+      <h3>Day 12: Depart Delhi</h3>
+      <p>After breakfast, enjoy a city tour of New Delhi. Later, transfer to the airport for your onward flight.</p>
+    </div>
+  </div>
+        `,
+        gallery: [
+          "festivalImg/hornbill/1.png",
+          "festivalImg/hornbill/2.png",
+          "festivalImg/hornbill/3.png",
+          "festivalImg/hornbill/4.png"
+        ]
+      },
+      {
+        id: "holi",
+        title: "Holi Festival",
+        image: "festivalImg/Holi-Festival-2.png",
+        description: `
+        <div class="container">
+  <h1>Destination</h1>
+  <p><strong>Destination:</strong> Delhi – Mathura – Agra – Bharatpur – Ranthambhore – Jaipur</p>
+  <p><strong>Duration: 11 Days / 10 Nights</strong></p>
+  <br>
+  <h2>Overview of Holi Festival Tour</h2>
+  <p>
+    Step into a world where the colors of joy are beautifully expressed in the Holi, the festival of colors.
+    The latter usually takes place in March, coinciding with the beginning of spring and the triumph of good over evil.
+    Be a part of the locals who will be pouring color powders and water all over the place, beginning a laughing and frenzied mood.
+    Step into a noise filled street bursting with music, rhythm, and savory dishes.
+  </p>
+  <br>
+  <h2>Holi Festival Tour Itinerary</h2>
+  <br>
+  <div class="day">
+    <h3>Day 1: Arrive Delhi</h3>
+    <p>Arrive in Delhi and receive a traditional welcome at the airport before being transferred to your hotel.<br>Overnight in Delhi</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 2: Delhi</h3>
+    <p>Start your day with a heritage walk through Old Delhi, visiting iconic spots like Chandani Chowk, Jama Masjid, and the Red Fort. Later, visit Akshardham Temple and the Lotus Temple.<br>Overnight in Delhi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 3: Delhi</h3>
+    <p>Tour the landmarks of New Delhi, including the Parliament Building, Rashtrapati Bhawan, and India Gate. Visit Qutab Minar, Humayun’s Tomb, Agrasen ki Baoli, Laxmi Narayan Temple, and Gurudwara Bangla Sahib.<br>Overnight in Delhi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 4: Delhi – Agra</h3>
+    <p>Drive to Agra in the morning. In the afternoon, visit the historic Agra Fort and explore the local market.<br>Overnight in Agra.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 5: In Agra</h3>
+    <p>Visit the magnificent Taj Mahal in the morning, followed by a visit to Itmad-ud-Daula’s Tomb.<br>Overnight in Agra.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 6: Agra – Bharatpur – Ranthambhore</h3>
+    <p>On the way to Ranthambhore, stop at Fatehpur Sikri for sightseeing. Then, board a train to Ranthambhore.<br>Overnight in Ranthambhore.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 7: Ranthambhore</h3>
+    <p>Enjoy morning and afternoon game drives in Ranthambhore National Park, known for its tigers and diverse wildlife.<br>Overnight in Ranthambhore.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 8: Ranthambhore – Jaipur</h3>
+    <p>After a morning game drive, travel to Jaipur. In the evening, experience traditional Rajasthani culture at Chokhi Dhani.<br>Overnight in Jaipur.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 9: In Jaipur</h3>
+    <p>Visit Amer Fort with an elephant or jeep ride. Explore Jaipur’s landmarks, including Hawa Mahal, City Palace, Jantar Mantar, and Central Museum.<br>Overnight in Jaipur.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 10: In Jaipur</h3>
+    <p>Celebrate the vibrant festival of Holi with colors and festivities. Spend the rest of the day at leisure.<br>Overnight in Jaipur.</p>
+    <p class="font-bold text-red-600">NOTE: PLEASE KEEP A SPARE SET OF CLOTH FOR HOLI FESTIVAL</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 11: Jaipur – Delhi</h3>
+    <p>Morning breakfast at the hotel and checkout. Drive to Delhi. On arrival, transfer to the international airport to board the flight for onward destination.</p>
+  </div>
+</div>
+`,
+        gallery: [
+          "festivalImg/holi/1.png",
+          "festivalImg/holi/2.png",
+          "festivalImg/holi/3.png",
+          "festivalImg/holi/4.png",
+          "festivalImg/holi/5.png"
+        ]
+      },
+      {
+        id: "hemis",
+        title: "Hemis Festival",
+        image: "festivalImg/Hemis-Festival.png",
+        description: `
+  <div class="container">
+  <h1>Destination</h1>
+  <p><strong>Destination:</strong> Delhi – Leh – Lamayuru – Alchi – Hemis – Pangong Lake</p>
+  <p><strong>Duration: 9 Days / 8 Nights</strong> </p>
+  <br>
+
+  <h2>Overview</h2>
+  <br>
+  <p>
+    Embark on a captivating journey through the breathtaking landscapes of Ladakh with this 10-day itinerary.
+    Begin your adventure in Delhi, where you’ll be greeted with warm Indian hospitality before flying to the serene valley of Leh.
+    Explore ancient monasteries, vibrant markets, and stunning natural wonders like Pangong Lake.
+    Experience the rich culture of Ladakh at the Hemis Festival, and witness the region’s unique blend of tradition and spirituality.
+    From the magnetic hills of Lamayuru to the tranquil beauty of Alchi, each day promises new discoveries and unforgettable memories.
+    Conclude your journey back in Delhi, enriched with the sights, sounds, and stories of an extraordinary region.
+  </p>
+  <br>
+  <h2>Day Wise Plan</h2>
+  <br>
+  <div class="day">
+    <h3>Day 1: Arrive Delhi</h3>
+    <p>Arrive in Delhi and receive a warm, traditional welcome at the airport before transferring to your hotel.<br>Overnight in Delhi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 2: Delhi – Leh</h3>
+    <p>Fly from Delhi to Leh and transfer to your hotel. Explore Leh, a stunning valley surrounded by snow-capped mountains, rich in culture and history. In the evening, visit the local market.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 3: Leh Sightseeing</h3>
+    <p>Take a day trip to Shey and Thiksey monasteries. Visit Shanti Stupa, offering panoramic views of the city, and explore the historic Leh Palace.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 4: Leh to Lamayuru via Magnetic Hill, then to Alchi</h3>
+    <p>Drive to Lamayuru, stopping at the Magnetic Hill, where vehicles seem to defy gravity. Visit the ancient Lamayuru Monastery before continuing to Alchi.<br>Overnight in Alchi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 5: Alchi to Leh via Likir</h3>
+    <p>Visit Likir Monastery, known for its beautiful murals and large Buddha statue. On the way back to Leh, stop at Basgo Monastery.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 6: Hemis Festival</h3>
+    <p>Spend the day immersed in the vibrant Hemis Festival, witnessing traditional dances and rituals.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 7: Hemis Festival</h3>
+    <p>Continue enjoying the Hemis Festival, exploring the rich cultural heritage of Ladakh.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 8: Leh to Pangong Lake and Back</h3>
+    <p>Drive to Pangong Lake via Changla Pass. Marvel at the stunning beauty of the lake, shared by India and China, before returning to Leh.<br>Overnight in Leh.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 9: Leh to Delhi</h3>
+    <p>Fly back to Delhi and enjoy a city tour, visiting some of Delhi’s iconic landmarks.<br>Overnight in Delhi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 10: Delhi</h3>
+    <p>Transfer to the airport for your onward flight. Safe travels!</p>
+  </div>
+</div>
+`,
+        gallery: [
+          "festivalImg/hemis/1.png",
+          "festivalImg/hemis/2.png",
+          "festivalImg/hemis/3.png",
+          "festivalImg/hemis/4.png"
+        ]
+      },
+      {
+        id: "durga",
+        title: "Durga Puja",
+        image: "festivalImg/Durga-Puja.png",
+        description: `
+        <div class="container">
+  <h1>Destination</h1>
+  <p><strong>Destination:</strong> Kolkata – Sunderban</p>
+  <p><strong>Duration: 8 Days / 7 Nights</strong></p>
+  <br>
+  <h2>Overview</h2>
+  <br>
+  <p>
+    Durga Puja is an annual Hindu festival that celebrates worship of the Hindu goddess Durga.
+    Durga Puja festival marks the victory of Goddess Durga over the evil buffalo demon Mahishasura.
+    Thus, Durga Puja festival epitomizes the victory of Good over Evil.
+    The festival is celebrated in a grand way in Kolkata, the festivities spread over days and the entire city is in festive mode.
+    Preparations for the festival start a couple of months before.
+  </p>
+  <br>
+  <h2>Durga Puja with Sundarban Itinerary</h2>
+  <br>
+  <div class="day">
+    <h3>Day 1: Arrive Kolkata</h3>
+    <p>Arrive in Kolkata and transfer to your hotel. Explore the city’s rich literary and historical heritage.<br>Overnight in Kolkata.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 2: Kolkata</h3>
+    <p>Visit Victoria Memorial and St. Paul’s Cathedral. Optional: Street food tour.<br>Overnight in Kolkata.<br><strong>Optional Tours:</strong> An Introduction to Kolkata’s Street Food</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 3: Kolkata</h3>
+    <p>Explore famous Durga Puja pandals in North Kolkata, known for their unique themes and creativity.<br>Overnight in Kolkata.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 4: Kolkata</h3>
+    <p>(Mahanavami) – Morning proceed for city tour visiting various famous Durga Puja Pandal of South Kolkata.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 5: Kolkata</h3>
+    <p>Witness the traditional “Sindur Khela” and the final immersion of Durga idols in the river, marking the end of the festival.<br>Overnight in Kolkata.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 6: Kolkata – Sunderban Tiger Reserve</h3>
+    <p>Transfer to Gothkhali Jetty and cruise to Sunderban Tiger Camp. Enjoy a village tour of Dayapur and relax in the evening.<br>Overnight at Tiger Camp.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 7: Sunderban Tiger Reserve</h3>
+    <p>Cruise through creeks and rivers to Dobanke Watch Tower and explore the canopy walk. Visit Pakhiralay Island and enjoy a cultural show in the evening.<br>Dinner & Overnight at Tiger Camp.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 8: Sunderban Tiger Reserve – Kolkata</h3>
+    <p>Morning cruise to Sudhayakhali Watch Tower for wildlife spotting. Return to Kolkata after lunch.</p>
+  </div>
+</div>
+`,
+        gallery: [
+          "festivalImg/durga/1.png",
+          "festivalImg/durga/2.png",
+          "festivalImg/durga/3.png",
+          "festivalImg/durga/4.png"
+        ]
+      },
+      {
+        id: "Aoleang",
+        title: "Aoleang Monyu Festival",
+        image: "festivalImg/Aoleang-Monyu-Festival.png",
+        description: `
+        <div class="container">
+    <h1>Destination</h1>
+    <p>Delhi – Guwahati – Kaziranga – Nameri – Dirang – Tawang</p>
+    <p><strong>Duration: 7 Days / 6 Nights</strong></p>
+    <br>
+
+    <h2>Overview</h2>
+  <p>The Aoleang Monyu Festival, also known as the Aoleang Festival, is a present and popular cultural celebration hosted by the Konyak Naga tribe in Nagaland, India. This celebration celebrates the coming of spring and the start of the Konyak New Year, usually celebrated in the first week of April.</p>
+  <br>
+
+  <h2>Aoleang Monyu festival:</h2>
+<br>
+  <div class="day">
+    <h3>Day 1: Delhi</h3>
+    <p>Arrive Delhi by flight Welcome to India- a country where hospitality is a way of life; to a culture steeped in tradition, a land where history lives in music and dance. You will be received at the airport in a traditional manner with garlands and proceed to your hotel.<br>Overnight in Delhi.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 2: Delhi – Guwahati – Kaziranga</h3>
+    <p>After breakfast, transfer to the airport to board the morning flight to Guwahati.Up on arrival at Guwahati airport in the afternoon meet and assistance by our representative and straight drive to Kariranga.</p>
+    <p>Kaziranga National Park is spread over 850 sq kms across Golaghat, Nagaon and Sonitpur districts. Kaziranga National Park is also designated World Natural Heritage sites by UNESCO in 1985. Originally established as a reserve forest in 1908, Kaziranga was declared a sanctuary in 1916 to counter excessive poaching, especially of its most prized inhabitant, the rhinoceros.<br>Dinner and overnight in Kaziranga</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 3: Kaziranga</h3>
+    <p>Early in the morning – elephant safari (a best chance to get close to rhinos).<br>After breakfast, go on a Jeep safari. We will cross the savanna, wetlands, and moist deciduous forest. A great chance to observe many species of birds and mammals typical to this area.<br>Dinner and overnight in Kaziranga</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 4: Kaziranga – Tezpur – Nameri</h3>
+    <p>After breakfast at hotel checkout and drive to Tezpur and further to the area of Nameri National Park.<br>After noon enjoy a nature walk in the Park and in case of being lucky – a possibility to observe a tiger.</p>
+    <p>Note: Nameri National park is famous for bird watching there are very few chances that you will find a Tiger. There would not be any safari like jeep or Elephant Safari in the jungle. Guest have to walk in the jungle with our expert naturalist and forest guard)<br>Dinner and overnight in Nameri</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 5: Nameri – Dirang</h3>
+    <p>After breakfast checkout from hotel start our journey to Dirang  in the state of Arunachal Pradesh. This region is located near the border with Bhutan and Tibet. After breakfast drive to Dirang, en-route visit Asia’s second largest Orchidarium at Tipi where one can have a quick look over 7500 orchids from a collection of about 300 species. Arrival in Dirang, that is home for Monpa people and a visit at Dirang Dzong (Dirang Fort) and Dirang Monastery (if time permits). A walk around the local market if time permits.<br>Dinner and overnight in Dirang.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 6: Dirang – Tawang</h3>
+    <p>After breakfast heck out from the hotel and drive to Twang. A few stopovers at Sela Pass (13,700 ft), Jaswantgarh Memorial & Nuranang Water Falls to admire the landscape and to take some great pictures.<br>Dinner and overnight in Tawang.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 7: Tawang</h3>
+    <p>Morning after breakfast visit of 400 years (17th century) old, Tawang Monastery which is the second largest monastery in the world after Potala Palace in Tibet. The building is about 113 feet longand 80 feet wide and houses valuable antiquities, books and manuscripts-handwritten and printed.</p>
+    <p>Later visit Gyangong Anigompa Nun Monastery. Later visit Indo-China War Memorial- a 40 foot high multi-hued memorial, has a structure constructed in stupa design. Dedicated to the martyrs of Sino-Indo War held in 1962, this memorial is nestled among beautiful peaks, which overlooks the Tawang-Chu valley. If time permits visit Local Market.<br>Dinner and overnight in Tawang.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 8: Tawang – Bomdila</h3>
+    <p>Morning after breakfast drive to Bomdila – the headquarters of the West Kameng District of Arunachal. On arrival visit Local market & Old Bomdila Monastery.<br>Dinner and overnight in hotel.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 9: Bomdila- Tezpur</h3>
+    <p>After breakfast drive to Tezpur-City of Blood. Tezpur is also considered the cultural capital of Assam. The town has produced many stalwarts such as Dr. Bhupen Hazarika & the former speaker of the Indian Parliament, Somnath Chatterjee.</p>
+    <p>Late afternoon visit Mahabhairab Temple, is believed to have been built by King Banasura himself. The Puranas state that Banasura was the first person to worship the linga form of Shiva. The Presiding deity, Mahabhairab, is a fierce incarnation of Shiva.<br>Dinner and overnight in Tezpur.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 10: Tezpur – Ziro</h3>
+    <p>Full-day drive to Jiro (usually spelled and pronounced as Ziro by majority of people) in the Lower Subansiri district of Arunachal Pradesh, the plateau of Apatani Tribe (There are currently no known written records of the history of the Apatani tribe, although it is speculated that, throughout their history, the Apatani had a democratic system of running the society. The village council was known as the Bulyang. They are of Tibetan origin; their language belongs to the Tibeto-Burman family. Most Apatanis are loyal followers of the Donyi-Polo faith, who pray to an array of spirits and souls for blessing. When a misfortune occurs, they believe that it is caused by certain spirits, and thus they make appeasement sacrifices of chickens and Mithuns. The dress of the Apatanis is elaborate and colorful, yet simple in style. Tattooing and the stuffing of large nose plugs were once popular among the women. Originally, this practice started because the women wanted to look unattractive to males from neighboring tribes. En route, visit some Nishi Tribal Villages, the largest tribes (population wise) in Arunachal Pradesh. Arrive Ziro in the evening and check-in at your hotel for overnight stay.<br>Dinner and overnight in Ziro.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 11: Ziro</h3>
+    <p>An excursion to Hang – the biggest tribal village in Asia, inhabited by Apatani tribe. Later visit the view point at Old Ziro. Sightseeing of Ziro (visit local market & Arunachal Pradesh State museum).<br>Dinner and Overnight in Ziro.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 12: Ziro – Majuli</h3>
+    <p>After breakfast at hotel drive to the river island of Majuli. (approx. 280 kms 7-8 hrs Drive.) Majuli is the largest fresh Water mid-river deltoid island in the world. It is situated in the upper reaches of the river Brahmaputra in Assam. This Island, with a population of 1.6 Lakhs, majority being tribal, is endowed with rich heritage and has been the abode of the neo-vaishnavite culture. The island is a bio-diversity hotspot and has rich ecology with rare species of flora and fauna.</p>
+    <p>Majuli for the past five centuries has been the cultural capital of Assam. The main depositories of cultural and spiritual heritage are the Sattras, which are just like Gurukul (hermitages) of yore. Here up to 400 celibates’ stay for life preserving spiritual and cultural heritage, renouncing worldly desires. From the time of the great Vaishnavite renaissance of 14th and 15th century AD, under Srimanta Sankardeva, Srimanta Madhab Deva and other saints this island became the seat of Vaishnavite religion, art and culture. The famous Satriya Nritya (Dance) and Ankiya Bhaona (Traditional Drama) created by Sankardeva are now Internationally acclaimed and Nationally honoured. Majuli is equally famous for Tribal Folk Culture and Heritage. It is said to be the cradle of Missing and Deori cultures. Explore in and around Majuli.</p>
+    <p>Late afternoon if time permits visit Mishing tribe village (long house).<br> Dinner and Overnight in Majuli.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 13: Majuli – Sivasagar</h3>
+    <p>Morning Sightseeing of a few satras. Later in the morning board a Ferry to Nimatighat and drive to Sivasagar, On arrival straight proceed for sightseeing: Talatal Ghar, Joysagar & nearby temples, Rang Ghar, Shivadol Temple.</p>
+    <p>Sivasagar was the capital of the Ahom rulers from 1228 to 1826 AD. Sivasagar got its present name from Sivasagar Tank, excavated by the Ahom queen Ambika. The tank was named after her husband, Shiva Singha. Sivasagar tank is also known as Borpukhuri, literally, big lake. Shiva Dol, Vishnu Dol and Devi Dol are the three temples on the banks of Sivasagar.<br>Dinner and overnight in Sivsagar.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 14: Sivasagar-Mon</h3>
+    <p>After breakfast drive to Mon, en route visit Tea garden and Phuktong Village. On arrival Mon, visit local market and report to Police station.</p>
+    <p>Note: As per the rule all the guest has to report at police station for registration. Our guide will be there to assist all the guest during their visit to the police station in Mon, however all the guest has to be present with their passport and visa. Same way when guests are leaving the village then again they have to register themselves at the police station.<br>Dinner and overnight in Mon</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 15: Mon – Longwa – Mon</h3>
+    <p>After breakfast visit Longwa Village bordering India and Burma. Situated about 40 km from the district headquarters of Mon. Longwa is one of the biggest villages in the district. Some portion of this village lies in India and some in Myanmar. However, it is controlled by a chief known as Angh. Half of the house of the chief falls in India and the other half in Myanmar. The lucky villagers have two citizenships, one from India and the other one from Burma. It is the place where coal mine was discovered in 1907. A visit to the village will acquaint you with the culture of the tribe. They are skilled in making exquisite handicrafts.<br>Dinner and Overnight in Mon.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 16: Aoling Monyu Festival</h3>
+    <p>A walk around Shangnyu village, that is a typical and the biggest village of Konyak tribe. Great spectacle: traditional celebrations of Aoling Monyu together with Konyaks. hnogpoi village<br>Dinner and Overnight in Mon.</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 17: Mon – Dibrugarh</h3>
+    <p>After breakfast checkout from the hotel and drive to Dibrugarh, en route visit a tea plantation (one of many that can be found throughout the state of Assam).<br>Dibrugarh, Tea city of India, it owes its moniker to the fact that it serves as the gateway to Dibrugarh, Tinsukia and Sivasagar, the three districts which produce almost 50% of Assam tea.<br>Dinner and overnight in Dibrugarh</p>
+  </div>
+
+  <div class="day">
+    <h3>Day 18: Dibrugarh – Delhi – Warsaw</h3>
+    <p>Morning after breakfast checkout from the hotel and drive to airport en-route visit the local market and transfer to airport.<br>On arrival at Delhi airport meet and assistance by our representative and transfer to international airport to board the flight for onward journey.</p>
+  </div>
+</div>`,
+        gallery: [
+          "festivalImg/aoleang/1.png",
+          "festivalImg/aoleang/2.png",
+          "festivalImg/aoleang/3.png",
+          "festivalImg/aoleang/4.png"
+        ]
+      }
+    ];
+
+    const cardView = document.getElementById("cardView");
+    const detailView = document.getElementById("detailView");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailDescription = document.getElementById("detailDescription");
+    const imageScroller = document.getElementById("imageScroller");
+    const introSection = document.getElementById("introSection");
+
+    function renderCards() {
+      cardView.innerHTML = "";
+      festivals.forEach(festival => {
+        const card = document.createElement("div");
+        card.className = "festival-card";
+        card.onclick = () => {
+          location.hash = festival.id;
+        };
+        card.innerHTML = `
+          <img src="${festival.image}" />
+        `;
+        cardView.appendChild(card);
+      });
+    }
+
+    function showDetails(id) {
+      const fest = festivals.find(f => f.id === id);
+      if (!fest) {
+        location.hash = "";
+        return;
+      }
+
+      detailTitle.textContent = fest.title;
+      if (fest.description.includes("<div")) {
+        detailDescription.innerHTML = fest.description;
+      } else {
+        detailDescription.textContent = fest.description;
+      }
+
+      const fullGallery = [...fest.gallery, ...fest.gallery];
+      imageScroller.innerHTML = fullGallery.map(src => `
+        <img src="${src}" class="gallery-image" alt="${fest.title}" />
+      `).join("");
+
+      cardView.classList.add("hidden");
+      introSection.classList.add("hidden");
+      detailView.classList.remove("hidden");
+    }
+
+    function showMainView() {
+      detailView.classList.add("hidden");
+      cardView.classList.remove("hidden");
+      introSection.classList.remove("hidden");
+    }
+
+    function handleRouting() {
+      const hash = location.hash.replace("#", "");
+      if (hash) {
+        showDetails(hash);
+      } else {
+        showMainView();
+      }
+    }
+
+    renderCards();
+    handleRouting();
+    window.addEventListener("hashchange", handleRouting);
+  </script>
+</body>
+
+</html>

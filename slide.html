@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Image Slider</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Swiper CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</head>
+<body class="bg-white ">
+
+  <div class="max-w-3xl mx-auto px-4">
+    <!-- Slider main container -->
+    <div class="swiper mySwiper rounded-md overflow-hidden">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image1.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image2.png"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image3.png"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Slide 4 -->
+        <div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image4.jpg"
+            class="w-full h-full object-cover"
+          />
+          <!-- Slide 5 -->
+        </div><div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image5.jpg"
+            class="w-full h-full object-cover"
+          />
+          <!-- Slide 6 -->
+        </div><div class="swiper-slide h-[300px] sm:h-[400px]">
+          <img
+            src="details/image6.jpg"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Pagination Dots -->
+      <div class="swiper-pagination mt-4 text-center"></div>
+    </div>
+  </div>
+
+  <!-- SwiperJS Init -->
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      loop: true,
+      autoplay: {
+        delay: 1000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+</body>
+</html>
