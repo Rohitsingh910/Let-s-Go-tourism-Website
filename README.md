@@ -26,7 +26,7 @@ A responsive, dynamic tourism website where users can explore travel packages, b
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/lets-go-tourism.git
+git clone https://github.com/Rohitsingh910/Let-s-Go-tourism-Website
 cd lets-go-tourism
 
 # Install dependencies (for React frontend)
